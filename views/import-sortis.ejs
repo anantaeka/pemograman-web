@@ -1,0 +1,56 @@
+
+<% include header %>
+
+  <script>
+    $(function() {
+      $("#url").keypress(function(e) {
+        if(e.which == 13) importAll();
+      });
+
+      $("#import").click(importAll);
+    });
+
+    function importAll() {
+      $("#progress").html('');
+
+      if($("#url").val().trim() == "") {
+        $("#progress").append("<div>enter a url, example: http://mysortis.com</div>");
+        return;
+      }
+
+      $("#progress").append("<div>import started for tags, sorted and archived...</div>");
+
+      $.post("/import-sortis-tags", { url: $("#url").val() }, function(data) {
+        $("#progress").append("<div>tags imported.</div>");
+      });
+
+      $.post("/import-sortis-sorted", { url: $("#url").val() }, function(data) {
+        $("#progress").append("<div>sorted imported.</div>");
+      });
+
+      $.post("/import-sortis-archived", { url: $("#url").val() }, function(data) {
+        $("#progress").append("<div>archived imported.</div>");
+      });
+    }
+  </script>
+
+  <div id="dashboard">
+    <div class="row">
+      <p>
+        Sortis allows you to import another Sortis' data. Each Sortis app exposes the following resources: <code><a href="/tags">/tags</a></code>, <code><a href="/archived-raw">/archived-raw</a></code>, and <code><a href="/sorted-raw">/sorted-raw</a></code>.
+      </p>
+      <p>
+        Enter the base url for a Sortis instance (for example: <code>http://mysortis.com/</code>), and click the import button. All data from that Sortis instance will be imported into this one.
+      </p>
+      <input id="url" type="text" style="margin-top: 20px" placeholder="enter url to import from another Sortis app" class="col-xs-12 col-md-12" />
+      <div class="clearfix visible-xs visible-sm" style="margin-top: 10px"></div>
+      <a id="import" href="javascript:;" style="margin-top: 20px" class="col-md-2">import</a>
+    </div>
+
+    <hr />
+
+    <div id="progress" class="row">
+    </div>
+  </div>
+
+<% include footer %>

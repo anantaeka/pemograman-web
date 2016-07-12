@@ -1,0 +1,40 @@
+body {
+  font-family: Consolas, monospace;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 16px;
+}
+
+#dashboard {
+  padding: 80px 15px;
+}
+
+.border {
+  border: solid 1px silver;
+  padding: 3px;
+}
+
+.tweet {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.profile-pic {
+  border: solid 1px silver;
+  padding: 3px;
+  width: 56px;
+  height: 56px;
+}
+
+.wordwrap {
+  white-space: pre-wrap;       
+  white-space: -moz-pre-wrap;  
+  white-space: -pre-wrap;      
+  white-space: -o-pre-wrap;    
+  word-wrap: break-word;       
+}
+
+.importantTag {
+  font-weight: 900;
+}
